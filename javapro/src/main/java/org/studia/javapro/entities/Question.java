@@ -19,7 +19,7 @@ public class Question {
 	private String question;
 	@ManyToMany
 	private List<Answer> answers;
-	@OneToMany
+	@ManyToMany
 	private List<Answer> correctAnswers;
 
 }
