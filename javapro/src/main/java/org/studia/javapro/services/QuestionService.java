@@ -26,5 +26,14 @@ public class QuestionService {
 	public List<Question> getAllQuestions() {
 		return questionsRepository.findAll();
 	}
+	public void setQuestionId(Question question) {
+		question = questionsRepository.findByQuestion(question.getQuestion()).orElse(null);
+		System.out.println(question);
+	}
+	public void setQuestionIdForList(List<Question> questions) {
+		for (Question question : questions) {
+			setQuestionId(question);
+		}
+	}
 
 }

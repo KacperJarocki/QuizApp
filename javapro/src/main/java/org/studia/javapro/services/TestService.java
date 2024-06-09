@@ -2,15 +2,11 @@ package org.studia.javapro.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.studia.javapro.entities.Client;
-import org.studia.javapro.entities.Question;
-import org.studia.javapro.entities.Test;
+import org.studia.javapro.entities.*;
 import org.studia.javapro.repositories.ClientRepository;
 import org.studia.javapro.repositories.TestRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @Service
 public class TestService {
@@ -20,7 +16,9 @@ public class TestService {
 	ClientRepository clientRepository;
 	@Autowired
 	QuestionService questionService;
-	public void createTest(Client client,int howManyQuestions) {
+	@Autowired
+	GivenAnswerService givenAnswerService;
+	public long createTest(Client client,int howManyQuestions) {
 		Test test = new Test();
 		Client clientSearch= clientRepository.findByAlbumNumber(client.getAlbumNumber()).orElse(null);
 		if(clientSearch!=null) {
@@ -31,7 +29,9 @@ public class TestService {
 		}
 		Random random = new Random(client.getAlbumNumber().hashCode());
 		test.setQuestions(getQuestions(howManyQuestions,random));
-		testRepository.save(test);
+		test.setHasStarted(false);
+		test = testRepository.save(test);
+		return test.getId();
 	}
 	private List<Question> getQuestions(int howManyQuestions,Random random){
 		List<Question> questions = questionService.getAllQuestions();
@@ -53,5 +53,50 @@ public class TestService {
 
 	public void updateTest(Client testUser, int howManyQuestions) {
 	}
+
+	public Test startTest(Long testId) {
+		Test test = testRepository.findById(testId).get();
+		test.setHasStarted(true);
+		testRepository.save(test);
+		return test;
+	}
+
+	public int finishTest(long testId, List<GivenAnswer> givenAnswers) {
+		Test test = testRepository.findById(testId).get();
+		System.out.println("jestem przed serwisem");
+		givenAnswerService.createGivenAnswer(givenAnswers);
+		System.out.println("jestem po serwisie");
+		test.setGivenAnswers(givenAnswers);
+		int score = calculateScore(test);
+		System.out.println("score: "+score);
+		test.setScore(score);
+		System.out.println(test);
+		testRepository.save(test);
+		return score;
+	}
+public int calculateScore(Test test){
+    int score = 0;
+    HashMap<Long, Question> BaseQuestionFromTest= new HashMap<>();
+    HashMap<Long, GivenAnswer> answersGivenByClient= new HashMap<>();
+    for(Question question: test.getQuestions()){
+        BaseQuestionFromTest.put(question.getId(), question);
+    }
+    for(GivenAnswer givenAnswer: test.getGivenAnswers()){
+        answersGivenByClient.put(givenAnswer.getQuestion().getId(), givenAnswer);
+    }
+    for(Map.Entry<Long, Question> entry : BaseQuestionFromTest.entrySet()){
+        Long questionId = entry.getKey();
+        Question baseQuestion = entry.getValue();
+        GivenAnswer clientAnswer = answersGivenByClient.get(questionId);
+        if(clientAnswer != null){
+            Set<Answer> correctAnswersSet = new HashSet<>(baseQuestion.getCorrectAnswers());
+            Set<Answer> clientAnswersSet = new HashSet<>(clientAnswer.getAnswers());
+            if(correctAnswersSet.equals(clientAnswersSet)){
+                score++;
+            }
+        }
+    }
+    return score;
+}
 }
 
