@@ -14,9 +14,7 @@ public class AnswerService {
 		if (savedAnswer == null) {
 			answerRepository.save(answer);
 		} else {
-			System.out.println("Answer already exists");
 			answer.setId(savedAnswer.getId());
 		}
-
 	}
 }
