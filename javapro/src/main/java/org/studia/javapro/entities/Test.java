@@ -17,5 +17,8 @@ public class Test {
 	Client testUser;
 	@ManyToMany
 	List<Question> questions;
+	@OneToMany
+	List<GivenAnswer> givenAnswers;
 	int score;
+	Boolean HasStarted;
 }
