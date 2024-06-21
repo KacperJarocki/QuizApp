@@ -1,10 +1,11 @@
-package org.studia.javaproadmin;
+package org.studia.javaproadmin.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.studia.javaproadmin.entities.Client;
 
 public class AdminApplicationController {
 
@@ -19,9 +20,9 @@ public class AdminApplicationController {
 
     @FXML
     void logIn(ActionEvent event) {
-        System.out.println("Login: " + Login.getText());
-        System.out.println("Password: " + Password.getText());
-        System.out.println("send login credentials");
+        Client client = new Client();
+        client.setAlbumNumber(Login.getText());
+        client.setPassword(Password.getText());
     }
 
 }
