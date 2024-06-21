@@ -3,7 +3,7 @@ package org.studia.javaproadmin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class AdminApplicationController{
     @FXML
     private Label welcomeText;
 
