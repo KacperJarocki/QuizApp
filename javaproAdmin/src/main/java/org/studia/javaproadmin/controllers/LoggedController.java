@@ -23,6 +23,8 @@ public class LoggedController {
 			throw new RuntimeException(e);
 		}
 		mainController.setNewPane(pane);
+		ShowQuestionViewController showQuestionViewController = fmxmlLoader.getController();
+		showQuestionViewController.setMainController(mainController);
 	}
 
 	public void buttonAddQuestion(ActionEvent actionEvent) {
@@ -34,6 +36,8 @@ public class LoggedController {
 			throw new RuntimeException(e);
 		}
 		mainController.setNewPane(pane);
+		AddQuestionFormController addQuestionFormController = fmxmlLoader.getController();
+		addQuestionFormController.setMainController(mainController);
 	}
 
 	public void buttonShowMarks(ActionEvent actionEvent) {
@@ -45,6 +49,8 @@ public class LoggedController {
 			throw new RuntimeException(e);
 		}
 		mainController.setNewPane(pane);
+		ShowMarksViewController showMarksViewController = fmxmlLoader.getController();
+		showMarksViewController.setMainController(mainController);
 	}
 
 	public void buttonAddClient(ActionEvent actionEvent) {
@@ -56,5 +62,7 @@ public class LoggedController {
 			throw new RuntimeException(e);
 		}
 		mainController.setNewPane(pane);
+		AddUserFormController addUserFormController = fmxmlLoader.getController();
+		addUserFormController.setMainController(mainController);
 	}
 }
