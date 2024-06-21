@@ -7,6 +7,7 @@ module org.studia.javaproadmin {
     requires org.kordamp.bootstrapfx.core;
 	requires static lombok;
 	requires com.google.gson;
+	requires jdk.compiler;
 	opens org.studia.javaproadmin.entities to com.google.gson;
 
 	opens org.studia.javaproadmin to javafx.fxml;

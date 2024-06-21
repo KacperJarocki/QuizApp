@@ -24,6 +24,8 @@ public class MainController {
 
 		LoginController loginController  = fxmlLoader.getController();
 		loginController.setMainController(this);
+		LoggedController loggedController = fxmlLoader.getController();
+		loggedController.setMainController(this);
 	}
 
 	public void setNewPane(Pane pane) {
