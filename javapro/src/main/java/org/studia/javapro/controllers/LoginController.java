@@ -18,7 +18,7 @@ public class LoginController {
 	@PutMapping("/login")
 	public ResponseEntity login(@RequestBody Client client) {
 		Roles role = loginService.logIn(client);
-		if (role == null) {
+		if (role == Roles.NONE){
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}else {
 			return ResponseEntity.ok(role);
