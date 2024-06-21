@@ -14,11 +14,11 @@ public class LoginService {
 	public Roles logIn(Client client) {
 		Client clientFromDataBase = clientRepository.findByAlbumNumber(client.getAlbumNumber()).orElse(null);
 		if (clientFromDataBase == null) {
-			return null;
+			return Roles.NONE;
 		}else if (clientFromDataBase.getPassword().equals(client.getPassword())) {
 			return clientFromDataBase.getRole();
 		}else {
-			return null;
+			return Roles.NONE;
 		}
 	}
 }
