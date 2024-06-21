@@ -1,4 +1,4 @@
 package org.studia.javaproadmin.controllers;
 
-public class AddQuestionFromController {
+public class AddUserFormController {
 }
