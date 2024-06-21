@@ -5,7 +5,10 @@ module org.studia.javaproadmin {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+	requires static lombok;
 
-    opens org.studia.javaproadmin to javafx.fxml;
+	opens org.studia.javaproadmin to javafx.fxml;
     exports org.studia.javaproadmin;
+    exports org.studia.javaproadmin.controllers;
+    opens org.studia.javaproadmin.controllers to javafx.fxml;
 }
