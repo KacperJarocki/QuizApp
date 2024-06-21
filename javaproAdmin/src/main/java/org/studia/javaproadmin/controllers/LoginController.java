@@ -54,6 +54,8 @@ public class LoginController{
         } else {
             System.out.println("Logged in as " + role);
             mainController.setNewPane(pane);
+            LoggedController loggedController = fxmlLoader.getController();
+            loggedController.setMainController(mainController);
         }
     }
     public Roles sendLoginRequest(Client client) throws IOException {
