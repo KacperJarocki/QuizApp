@@ -22,6 +22,7 @@ public class Question {
 	private List<Answer> answers;
 	@ManyToMany
 	private List<Answer> correctAnswers;
-	private File file;
+	@Column(length = 1000000000,nullable=false)
+	private String encodedFile;
 
 }
