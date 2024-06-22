@@ -16,5 +16,6 @@
       <ComboBox fx:id="Role" layoutX="32.0" layoutY="238.0" prefHeight="26.0" prefWidth="159.0" promptText="Rola" />
       <Button layoutX="366.0" layoutY="34.0" mnemonicParsing="false" onAction="#addUserButton" prefHeight="69.0" prefWidth="198.0" text="Dodaj Użykownika" />
       <Label fx:id="info" layoutX="366.0" layoutY="119.0" prefHeight="56.0" prefWidth="198.0" text="Informacja z serwera" textAlignment="CENTER" />
+      <Button layoutX="32.0" layoutY="307.0" mnemonicParsing="false" onAction="#goBack" prefHeight="69.0" prefWidth="159.0" text="wstecz" />
    </children>
 </Pane>
