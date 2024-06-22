@@ -14,4 +14,17 @@ public class Question {
 	private List<Answer> correctAnswers;
 	private File file;
 
+	public void printQuestionInfo() {
+		System.out.println("ID: " + id);
+		System.out.println("Question: " + question);
+		System.out.println("Answers: ");
+		for (Answer answer : answers) {
+			System.out.println(answer.getAnswer());
+		}
+		System.out.println("Correct Answers: ");
+		for (Answer correctAnswer : correctAnswers) {
+			System.out.println(correctAnswer.getAnswer());
+		}
+		System.out.println("File: " + (file != null ? file.getName() : "No file attached"));
+	}
 }

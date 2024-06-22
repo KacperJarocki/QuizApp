@@ -13,13 +13,13 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Button layoutX="14.0" layoutY="77.0" mnemonicParsing="false" onAction="#buttonChooseFile" prefHeight="47.0" prefWidth="328.0" text="Wybierz Plik Zwiazany z Pytaniem" />
+      <Button fx:id="fileChooser" layoutX="14.0" layoutY="77.0" mnemonicParsing="false" onAction="#buttonChooseFile" prefHeight="47.0" prefWidth="328.0" text="Wybierz Plik Zwiazany z Pytaniem" />
       <TextField fx:id="Anserws" layoutX="14.0" layoutY="154.0" prefHeight="65.0" prefWidth="328.0" promptText="Podaj potencjalną odpowiedź następnie zatwierdź">
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Button layoutX="14.0" layoutY="235.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="328.0" text="Zatwierdź" />
-      <ListView layoutX="414.0" layoutY="24.0" prefHeight="348.0" prefWidth="200.0" />
+      <Button layoutX="14.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAnswer" prefHeight="41.0" prefWidth="328.0" text="Zatwierdź" />
+      <ListView fx:id="listOfAnserws" layoutX="414.0" layoutY="24.0" prefHeight="348.0" prefWidth="200.0" />
       <Button layoutX="185.0" layoutY="366.0" mnemonicParsing="false" onAction="#buttonSaveQuestion" prefHeight="65.0" prefWidth="126.0" text="Dodaj Pytanie" />
    </children>
 </Pane>
