@@ -14,7 +14,10 @@ import org.studia.javaproadmin.entities.Question;
 import org.studia.javaproadmin.services.InternetService;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class AddQuestionFormController {
@@ -78,7 +81,7 @@ public class AddQuestionFormController {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+				new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif", "*.jpeg","*.pdf")
 		);
 		selectedFile = fileChooser.showOpenDialog(null);
 		if (selectedFile != null) {
@@ -104,11 +107,22 @@ public class AddQuestionFormController {
 	public void buttonSaveQuestion(ActionEvent actionEvent) {
 		Question question = new Question();
 		question.setQuestion(this.question.getText());
-		question.setFile(selectedFile);
+		byte[] file;
+		try {
+			file = Files.readAllBytes(selectedFile.toPath());
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		question.setEncodedFile(Base64.getEncoder().encodeToString(file));
 		question.setAnswers(getAnswers());
 		question.setCorrectAnswers(getSelectedAnswers());
 		selectedAnswers.clear();
 		question.printQuestionInfo();
+		try {
+			internetService.sendQuestion(question);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	@FXML
 	public void addAnswer(ActionEvent actionEvent) {

@@ -12,7 +12,7 @@ public class Question {
 	private String question;
 	private List<Answer> answers;
 	private List<Answer> correctAnswers;
-	private File file;
+	private String encodedFile;
 
 	public void printQuestionInfo() {
 		System.out.println("ID: " + id);
@@ -25,6 +25,7 @@ public class Question {
 		for (Answer correctAnswer : correctAnswers) {
 			System.out.println(correctAnswer.getAnswer());
 		}
-		System.out.println("File: " + (file != null ? file.getName() : "No file attached"));
+		System.out.println("Encoded File: " + encodedFile);
+		System.out.println("Encoded Filee: " + encodedFile.length());
 	}
 }

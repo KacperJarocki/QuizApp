@@ -2,6 +2,7 @@ package org.studia.javaproadmin.services;
 
 import com.google.gson.Gson;
 import org.studia.javaproadmin.entities.Client;
+import org.studia.javaproadmin.entities.Question;
 import org.studia.javaproadmin.entities.Roles;
 
 import java.io.BufferedReader;
@@ -51,5 +52,26 @@ public class InternetService {
 		}
 
 		return role;
+	}
+	public void sendQuestion(Question question) throws IOException {
+		Gson gson = new Gson();
+		URL url = new URL(apiUrl + "/question");
+		String jsonInputString = gson.toJson(question);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		try(OutputStream os = conn.getOutputStream()) {
+			byte[] input = jsonInputString.getBytes("utf-8");
+			os.write(input, 0, input.length);
+		}
+
+		int code = conn.getResponseCode(); // To ensure the request was successful
+		System.out.println("Response Code : " + code);
+		if (code == HttpURLConnection.HTTP_UNAUTHORIZED) {
+			System.out.println("Authentication is required.");
+		}
 	}
 }
