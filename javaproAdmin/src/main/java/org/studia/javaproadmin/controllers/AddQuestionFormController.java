@@ -2,13 +2,10 @@ package org.studia.javaproadmin.controllers;
 
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
@@ -81,7 +78,7 @@ public class AddQuestionFormController {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		fileChooser.getExtensionFilters().addAll(
-				new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"),
+				new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
 		);
 		selectedFile = fileChooser.showOpenDialog(null);
 		if (selectedFile != null) {
