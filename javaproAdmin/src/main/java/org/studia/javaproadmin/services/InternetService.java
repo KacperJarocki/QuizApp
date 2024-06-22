@@ -75,6 +75,25 @@ public class InternetService {
 		}
 	}
 
-	public void sendAddUserRequest(Client client) {
+	public void sendAddUserRequest(Client client) throws IOException {
+		Gson gson = new Gson();
+		URL url = new URL(apiUrl + "/client");
+		String jsonInputString = gson.toJson(client);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		try(OutputStream os = conn.getOutputStream()) {
+			byte[] input = jsonInputString.getBytes("utf-8");
+			os.write(input, 0, input.length);
+		}
+
+		int code = conn.getResponseCode(); // To ensure the request was successful
+		System.out.println("Response Code : " + code);
+		if (code == HttpURLConnection.HTTP_UNAUTHORIZED) {
+			System.out.println("Authentication is required.");
+		}
 	}
 }
