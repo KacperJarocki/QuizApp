@@ -54,6 +54,7 @@ public class LoggedController {
 		mainController.setNewPane(pane);
 		ShowMarksViewController showMarksViewController = fmxmlLoader.getController();
 		showMarksViewController.setMainController(mainController);
+		showMarksViewController.setInternetService(internetService);
 	}
 
 	public void buttonAddClient(ActionEvent actionEvent) {
@@ -67,6 +68,7 @@ public class LoggedController {
 		mainController.setNewPane(pane);
 		AddUserFormController addUserFormController = fmxmlLoader.getController();
 		addUserFormController.setMainController(mainController);
+		addUserFormController.setInternetService(internetService);
 	}
 
 	public void setInternetService(InternetService internetService) {

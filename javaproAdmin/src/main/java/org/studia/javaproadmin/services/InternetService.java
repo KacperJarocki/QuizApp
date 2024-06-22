@@ -74,4 +74,7 @@ public class InternetService {
 			System.out.println("Authentication is required.");
 		}
 	}
+
+	public void sendAddUserRequest(Client client) {
+	}
 }
