@@ -4,11 +4,13 @@ package org.studia.javaproadmin.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import org.studia.javaproadmin.services.InternetService;
 
 public class LoggedController {
 	MainController mainController;
 	FXMLLoader fmxmlLoader;
 	Pane pane;
+	InternetService internetService;
 
 	void setMainController(MainController mainController) {
 		this.mainController = mainController;
@@ -38,6 +40,7 @@ public class LoggedController {
 		mainController.setNewPane(pane);
 		AddQuestionFormController addQuestionFormController = fmxmlLoader.getController();
 		addQuestionFormController.setMainController(mainController);
+		addQuestionFormController.setInternetService(internetService);
 	}
 
 	public void buttonShowMarks(ActionEvent actionEvent) {
@@ -64,5 +67,9 @@ public class LoggedController {
 		mainController.setNewPane(pane);
 		AddUserFormController addUserFormController = fmxmlLoader.getController();
 		addUserFormController.setMainController(mainController);
+	}
+
+	public void setInternetService(InternetService internetService) {
+		this.internetService = internetService;
 	}
 }
