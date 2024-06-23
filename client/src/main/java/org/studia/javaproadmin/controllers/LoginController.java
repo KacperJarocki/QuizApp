@@ -32,14 +32,8 @@ public class LoginController{
 
 	@FXML
     void logIn(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("logged.fxml"));
         Pane pane = null;
         internetService = new InternetService();
-        try {
-            pane = fxmlLoader.load();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         Client client = new Client();
         client.setAlbumNumber(Login.getText());
         client.setPassword(Password.getText());
@@ -47,11 +41,19 @@ public class LoginController{
         if (role == Roles.NONE) {
             System.out.println("Invalid login or password");
         } else if(role == Roles.STUDENT){
-           System.out.println("You do not have permisions");
+            System.out.println("Logged in as " + role);
+            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("studentLogged.fxml"));
+            pane = fxmlLoader.load();
+            mainController.setNewPane(pane);
+            StudentLoggedController loggedController = fxmlLoader.getController();
+            loggedController.setMainController(mainController);
+            loggedController.setInternetService(internetService);
         } else {
             System.out.println("Logged in as " + role);
+            FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("adminLogged.fxml"));
+            pane = fxmlLoader.load();
             mainController.setNewPane(pane);
-            LoggedController loggedController = fxmlLoader.getController();
+            AdminLoggedController loggedController = fxmlLoader.getController();
             loggedController.setMainController(mainController);
             loggedController.setInternetService(internetService);
         }

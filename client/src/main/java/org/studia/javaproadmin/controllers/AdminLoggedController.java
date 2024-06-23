@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.studia.javaproadmin.services.InternetService;
 
-public class LoggedController {
+public class AdminLoggedController {
 	MainController mainController;
 	FXMLLoader fmxmlLoader;
 	Pane pane;

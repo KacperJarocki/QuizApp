@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="572.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studia.javaproadmin.controllers.StudentLoggedController">
+   <children>
+      <Button layoutX="179.0" layoutY="171.0" mnemonicParsing="false" onAction="#buttonStartTest" prefHeight="61.0" prefWidth="496.0" text="Rozpocznij test" />
+      <Button layoutX="179.0" layoutY="83.0" mnemonicParsing="false" onAction="#buttonShowMarks" prefHeight="61.0" prefWidth="496.0" text="Sprawdź oceny" />
+      <Label contentDisplay="CENTER" layoutX="329.0" prefHeight="61.0" prefWidth="224.0" text="Panel Admina">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
