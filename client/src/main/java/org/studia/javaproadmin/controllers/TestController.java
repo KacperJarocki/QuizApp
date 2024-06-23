@@ -49,6 +49,7 @@ public class TestController {
 							setGraphic(null);
 						} else {
 							checkBox.setText(item);
+							checkBox.setSelected(false);
 							checkBox.setOnAction(e -> {
 								if (checkBox.isSelected()) {
 									Answer answer = new Answer();
@@ -77,7 +78,6 @@ public class TestController {
 			finishedTestRequest.getGivenAnswers().add(givenAnswer);
 			selectedAnswers.clear();
 			answerList.getItems().clear();
-			givenAnswer.getQuestion().printQuestionInfo();
 			givenAnswer.getAnswers().forEach(answer -> System.out.println("selected anserws" + answer.getAnswer()));
 		}
 		currentQuestion++;
