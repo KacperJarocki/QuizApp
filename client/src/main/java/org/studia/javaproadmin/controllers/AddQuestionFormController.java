@@ -92,7 +92,7 @@ public class AddQuestionFormController {
 	}
 	@FXML
 	public void goBack(ActionEvent actionEvent) {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("logged.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("adminLogged.fxml"));
 		Pane pane = null;
 		try {
 			pane = loader.load();
@@ -100,7 +100,7 @@ public class AddQuestionFormController {
 			e.printStackTrace();
 		}
 		mainController.setNewPane(pane);
-		LoggedController controller = loader.getController();
+		AdminLoggedController controller = loader.getController();
 		controller.setMainController(mainController);
 	}
 	@FXML
