@@ -33,7 +33,7 @@ public class TestScoreController {
 		studentLoggedController.setMainController(mainController);
 		studentLoggedController.setInternetService(internetService);
 	}
-
+//todo: implement setScore method add a mark acording to test standards
 	public void setScore(int score) {
 		grade.setText("Your score is: " + score);
 	}

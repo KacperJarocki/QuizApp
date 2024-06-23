@@ -74,4 +74,6 @@ public class AdminLoggedController {
 	public void setInternetService(InternetService internetService) {
 		this.internetService = internetService;
 	}
+	//todo: implement the method that shows the marks
+	//todo: impelement goback button
 }

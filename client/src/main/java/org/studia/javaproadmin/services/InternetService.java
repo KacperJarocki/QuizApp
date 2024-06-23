@@ -99,7 +99,7 @@ public class InternetService {
 			System.out.println("Authentication is required.");
 		}
 	}
-// implement the startTestRequest method to connect to api
+//todo: implement the startTestRequest method to connect to api
 	public long startTestRequest(String clientAlbumNumber) {
 		TestRequest testRequest = new TestRequest();
 		Client client = new Client();
@@ -108,12 +108,12 @@ public class InternetService {
 		testRequest.setHowManyQuestions(20);
 		return 1;
 	}
-//implement the startTest method to connect to api
+//todo: implement the startTest method to connect to api
 	public Test startTest(long testID) {
 		Test test = new Test();
 		return test.createTestWithPopulatedQuestions(new Client());
 	}
-
+//Todo: implement the finishTestRequest method to connect to api
 	public int finishTest(FinishedTestRequest finishedTestRequest) {
 		return 20;
 	}

@@ -38,7 +38,10 @@ public class StudentLoggedController {
 		testInfoController.setInternetService(internetService);
 		testInfoController.setTestID(testId);
 	}
+
+	//todo: implement the method that shows the marks
 	@FXML
 	public void buttonShowMarks(ActionEvent actionEvent) {
 	}
+	//todo: impelement goback button
 }
