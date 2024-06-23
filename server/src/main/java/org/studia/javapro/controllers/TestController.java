@@ -30,7 +30,6 @@ public class TestController {
 	}
 	@PutMapping("/finishTest")
 	public ResponseEntity finishTest(@RequestBody FinishedTestRequest finishedTestRequest) {
-		System.out.println("siema controler");
 		int score = testService.finishTest(finishedTestRequest.getTestId(), finishedTestRequest.getGivenAnswers());
 		Map<String, Integer> responseBody = new HashMap<>();
 		responseBody.put("score", score);
