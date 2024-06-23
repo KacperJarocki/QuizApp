@@ -13,4 +13,10 @@ public class Test {
 	List<GivenAnswer> givenAnswers;
 	int score;
 	Boolean HasStarted;
+	public Test createTestWithPopulatedQuestions(Client client) {
+		Test test = new Test();
+		test.setTestUser(client);
+		test.setQuestions(Question.getQuestions());
+		return test;
+	}
 }

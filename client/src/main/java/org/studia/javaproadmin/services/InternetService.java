@@ -1,9 +1,11 @@
 package org.studia.javaproadmin.services;
 
 import com.google.gson.Gson;
+import org.studia.javaproadmin.Request.TestRequest;
 import org.studia.javaproadmin.entities.Client;
 import org.studia.javaproadmin.entities.Question;
 import org.studia.javaproadmin.entities.Roles;
+import org.studia.javaproadmin.entities.Test;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -95,5 +97,19 @@ public class InternetService {
 		if (code == HttpURLConnection.HTTP_UNAUTHORIZED) {
 			System.out.println("Authentication is required.");
 		}
+	}
+// implement the startTestRequest method to connect to api
+	public long startTestRequest(String clientAlbumNumber) {
+		TestRequest testRequest = new TestRequest();
+		Client client = new Client();
+		client.setAlbumNumber(clientAlbumNumber);
+		testRequest.setTestUser(client);
+		testRequest.setHowManyQuestions(20);
+		return 1;
+	}
+//implement the startTest method to connect to api
+	public Test startTest(long testID) {
+		Test test = new Test();
+		return test.createTestWithPopulatedQuestions(new Client());
 	}
 }

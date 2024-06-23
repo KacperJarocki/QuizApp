@@ -48,6 +48,7 @@ public class LoginController{
             StudentLoggedController loggedController = fxmlLoader.getController();
             loggedController.setMainController(mainController);
             loggedController.setInternetService(internetService);
+            loggedController.setClientAlbumNumber(Login.getText());
         } else {
             System.out.println("Logged in as " + role);
             FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("adminLogged.fxml"));
