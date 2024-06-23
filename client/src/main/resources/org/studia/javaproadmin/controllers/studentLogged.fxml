@@ -10,7 +10,7 @@
    <children>
       <Button layoutX="179.0" layoutY="171.0" mnemonicParsing="false" onAction="#buttonStartTest" prefHeight="61.0" prefWidth="496.0" text="Rozpocznij test" />
       <Button layoutX="179.0" layoutY="83.0" mnemonicParsing="false" onAction="#buttonShowMarks" prefHeight="61.0" prefWidth="496.0" text="Sprawdź oceny" />
-      <Label contentDisplay="CENTER" layoutX="329.0" prefHeight="61.0" prefWidth="224.0" text="Panel Admina">
+      <Label contentDisplay="CENTER" layoutX="329.0" prefHeight="61.0" prefWidth="224.0" text="Panel Studenta">
          <font>
             <Font size="36.0" />
          </font>

@@ -8,6 +8,7 @@ module org.studia.javaproadmin {
 	requires static lombok;
 	requires com.google.gson;
 	requires jdk.compiler;
+	requires java.desktop;
 	opens org.studia.javaproadmin.entities to com.google.gson;
 
 	opens org.studia.javaproadmin to javafx.fxml;
