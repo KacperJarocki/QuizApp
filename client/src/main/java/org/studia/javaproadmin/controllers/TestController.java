@@ -102,7 +102,7 @@ public class TestController {
 
 		}else updateUI();
 	}
-
+///todo: implement the image decoding method
 	private void updateUI() {
 		Question questionFromTest = test.getQuestions().get(currentQuestion);
 		question.setText(questionFromTest.getQuestion());
