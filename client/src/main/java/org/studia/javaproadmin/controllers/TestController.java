@@ -4,11 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.util.Callback;
 import org.studia.javaproadmin.Request.FinishedTestRequest;
 import org.studia.javaproadmin.entities.Answer;
@@ -27,6 +26,7 @@ public class TestController {
 	List<Answer> selectedAnswers = new ArrayList<>();
 	FinishedTestRequest finishedTestRequest = new FinishedTestRequest();
 	int currentQuestion = -1;
+	FXMLLoader loader;
 	@FXML
 	private ListView<String> answerList;
 	@FXML
@@ -35,6 +35,8 @@ public class TestController {
 	private Label question;
 	@FXML
 	private Label questionNumber;
+	@FXML
+	private Button nextQuestionButton;
 	@FXML
 	public void initialize(){
 		answerList.setCellFactory(new Callback<>() {
@@ -78,9 +80,30 @@ public class TestController {
 			finishedTestRequest.getGivenAnswers().add(givenAnswer);
 			selectedAnswers.clear();
 			answerList.getItems().clear();
-			givenAnswer.getAnswers().forEach(answer -> System.out.println("selected anserws" + answer.getAnswer()));
 		}
 		currentQuestion++;
+		if (currentQuestion == test.getQuestions().size() -1 ) {
+			nextQuestionButton.setText("Finish");
+			updateUI();
+		} else if (currentQuestion == test.getQuestions().size()) {
+			int score = internetService.finishTest(finishedTestRequest);
+			Pane pane = null;
+			loader = new FXMLLoader(this.getClass().getResource("testScore.fxml"));
+			try {
+				pane = loader.load();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+			TestScoreController testScoreController = loader.getController();
+			testScoreController.setMainController(mainController);
+			testScoreController.setInternetService(internetService);
+			testScoreController.setScore(score);
+			mainController.setNewPane(pane);
+
+		}else updateUI();
+	}
+
+	private void updateUI() {
 		Question questionFromTest = test.getQuestions().get(currentQuestion);
 		question.setText(questionFromTest.getQuestion());
 		questionNumber.setText("Question " + (currentQuestion + 1));
