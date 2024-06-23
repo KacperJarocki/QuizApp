@@ -1,6 +1,7 @@
 package org.studia.javaproadmin.services;
 
 import com.google.gson.Gson;
+import org.studia.javaproadmin.Request.FinishedTestRequest;
 import org.studia.javaproadmin.Request.TestRequest;
 import org.studia.javaproadmin.entities.Client;
 import org.studia.javaproadmin.entities.Question;
@@ -111,5 +112,9 @@ public class InternetService {
 	public Test startTest(long testID) {
 		Test test = new Test();
 		return test.createTestWithPopulatedQuestions(new Client());
+	}
+
+	public int finishTest(FinishedTestRequest finishedTestRequest) {
+		return 20;
 	}
 }
