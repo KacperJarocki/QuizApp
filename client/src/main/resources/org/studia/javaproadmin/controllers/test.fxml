@@ -8,22 +8,21 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="798.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studia.javaproadmin.controllers.TestController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studia.javaproadmin.controllers.TestController">
    <children>
-      <Button fx:id="nextQuestionButton" layoutX="409.0" layoutY="483.0" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="66.0" prefWidth="144.0" text="Kolejne Pytanie" />
-      <Label fx:id="question" alignment="CENTER" prefHeight="73.0" prefWidth="798.0" text="Tu będzie twoje pytanie">
+      <Button layoutX="666.0" layoutY="631.0" mnemonicParsing="false" onAction="#nextQuestion" prefHeight="87.0" prefWidth="234.0" text="Kolejne Pytanie" />
+      <Label fx:id="question" alignment="CENTER" layoutX="33.0" layoutY="21.0" prefHeight="52.0" prefWidth="946.0" text="Tu będzie twoje pytanie">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ListView fx:id="answerList" layoutX="21.0" layoutY="99.0" prefHeight="372.0" prefWidth="340.0" />
-      <ImageView fx:id="photo" fitHeight="316.0" fitWidth="356.0" layoutX="409.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+      <ListView fx:id="answerList" layoutX="21.0" layoutY="99.0" prefHeight="521.0" prefWidth="522.0" />
+      <ImageView fx:id="photo" fitHeight="316.0" fitWidth="356.0" layoutX="581.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../../../../../../private/var/folders/xt/ysn1j0xn2_d736kpqpwsl4fm0000gn/T/com.apple.Photos.NSItemProvider/uuid=3A9E152A-1010-4861-ACE2-4B79107E55B9&amp;library=1&amp;type=1&amp;mode=1&amp;loc=true&amp;cap=true.jpeg/IMG_5793.jpeg" />
          </image>
       </ImageView>
-      <Label fx:id="questionNumber" alignment="CENTER" layoutX="36.0" layoutY="483.0" prefHeight="73.0" prefWidth="214.0" text="Tu jest twój licznik pytań">
+      <Label fx:id="questionCounter" alignment="CENTER" layoutX="39.0" layoutY="652.0" prefHeight="73.0" prefWidth="214.0" text="Tu jest twój licznik pytań">
          <font>
             <Font size="19.0" />
          </font>
