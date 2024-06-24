@@ -110,7 +110,7 @@ public class InternetService {
 		Client client = new Client();
 		client.setAlbumNumber(clientAlbumNumber);
 		testRequest.setTestUser(client);
-		testRequest.setHowManyQuestions(3);
+		testRequest.setHowManyQuestions(20);
 		long testID;
 		Gson gson = new Gson();
 		URL url = new URL(apiUrl + "/test");

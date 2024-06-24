@@ -13,7 +13,7 @@ public class AdminApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdminApplication.class.getResource("Main.fxml"));
         StackPane root = fxmlLoader.load();
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 800);
         stage.setScene(scene);
         stage.setTitle("Admin Panel");
         stage.show();

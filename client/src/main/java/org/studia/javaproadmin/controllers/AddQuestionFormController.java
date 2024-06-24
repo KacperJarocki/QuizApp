@@ -125,6 +125,16 @@ public class AddQuestionFormController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		loader = new FXMLLoader(getClass().getResource("adminLogged.fxml"));
+		try {
+			pane = loader.load();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		AdminLoggedController adminLoggedController = loader.getController();
+		adminLoggedController.setMainController(mainController);
+		adminLoggedController.setInternetService(internetService);
+		mainController.setNewPane(pane);
 	}
 	@FXML
 	public void addAnswer(ActionEvent actionEvent) {
