@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
-import org.studia.javaproadmin.entities.Test;
 import org.studia.javaproadmin.services.InternetService;
 
 public class StudentLoggedController {
@@ -43,5 +42,17 @@ public class StudentLoggedController {
 	@FXML
 	public void buttonShowMarks(ActionEvent actionEvent) {
 	}
-	//todo: impelement goback button
+
+	public void goBack(ActionEvent actionEvent) {
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("login.fxml"));
+		Pane pane = null;
+		try {
+			pane = loader.load();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		mainController.setNewPane(pane);
+		LoginController loginController = loader.getController();
+		loginController.setMainController(mainController);
+	}
 }
