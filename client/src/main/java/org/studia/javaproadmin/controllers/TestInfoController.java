@@ -22,6 +22,7 @@ public class TestInfoController {
 	void setTestID(long test) {
 		this.testID = test;
 	}
+	//TODO:implement timer
 	@FXML
 	public void startTimer(ActionEvent actionEvent) {
 		Test test = internetService.startTest(testID);
