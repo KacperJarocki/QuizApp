@@ -1,6 +1,7 @@
 package org.studia.javaproadmin.services;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.studia.javaproadmin.Request.FinishedTestRequest;
 import org.studia.javaproadmin.Request.TestRequest;
 import org.studia.javaproadmin.entities.Client;
@@ -8,15 +9,19 @@ import org.studia.javaproadmin.entities.Question;
 import org.studia.javaproadmin.entities.Roles;
 import org.studia.javaproadmin.entities.Test;
 import org.studia.javaproadmin.response.FinishedTestResponse;
+import org.studia.javaproadmin.response.GetMarksResponse;
 import org.studia.javaproadmin.response.testStartResponse;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class InternetService {
 	URL apiUrl = new URL("http://localhost:8080");
@@ -185,5 +190,33 @@ public class InternetService {
 			score = gson.fromJson(String.valueOf(response), FinishedTestResponse.class).getScore();
 		}
 		return score;
+	}
+
+	public List<Test> getTests() throws IOException {
+		List<Test> tests;
+		Gson gson = new Gson();
+		URL url = new URL(apiUrl + "/tests");
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		int code = conn.getResponseCode();
+		System.out.println("Response Code : " + code);
+		try(BufferedReader br = new BufferedReader(
+				new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+			StringBuilder response = new StringBuilder();
+			String responseLine = null;
+			while ((responseLine = br.readLine()) != null) {
+				response.append(responseLine.trim());
+			}
+			Type listType = new TypeToken<ArrayList<Test>>(){}.getType();
+			tests = gson.fromJson(String.valueOf(response), listType);
+			for (Test test : tests) {
+				test.printTestInfo();
+			}
+		}
+		return tests;
 	}
 }

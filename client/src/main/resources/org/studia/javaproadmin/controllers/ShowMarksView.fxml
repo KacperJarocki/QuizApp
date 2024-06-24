@@ -5,17 +5,17 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studia.javaproadmin.controllers.ShowMarksViewController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.studia.javaproadmin.controllers.ShowMarksViewController">
    <children>
-      <TableView fx:id="marks" layoutX="21.0" layoutY="31.0" prefHeight="311.0" prefWidth="559.0">
+      <TableView fx:id="marksTable" layoutX="21.0" layoutY="31.0" prefHeight="388.0" prefWidth="703.0">
         <columns>
-          <TableColumn prefWidth="149.0" text="Numer Albumu" />
-          <TableColumn prefWidth="87.0" text="ID Testu" />
-            <TableColumn prefWidth="104.0" text="Ilość Punktów" />
-            <TableColumn prefWidth="93.0" text="Ocena" />
-            <TableColumn prefWidth="138.0" text="Czy zdał" />
+          <TableColumn fx:id="albumNumberColumn" prefWidth="149.0" text="Numer Albumu" />
+          <TableColumn fx:id="testIdColumn" prefWidth="87.0" text="ID Testu" />
+          <TableColumn fx:id="pointsColumn" prefWidth="166.0" text="Ilość Punktów" />
+          <TableColumn fx:id="gradeColumn" prefWidth="138.0" text="Ocena" />
+          <TableColumn fx:id="passedColumn" prefWidth="162.0" text="Czy zdał" />
         </columns>
       </TableView>
-      <Button layoutX="21.0" layoutY="348.0" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="114.0" text="wstecz" />
+      <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="114.0" text="wstecz" />
    </children>
 </Pane>

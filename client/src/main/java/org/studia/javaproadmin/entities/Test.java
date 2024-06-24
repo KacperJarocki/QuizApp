@@ -7,7 +7,7 @@ import java.util.List;
 @Getter
 @Setter
 public class Test {
-	long Id;
+	long id;
 	Client testUser;
 	List<Question> questions;
 	List<GivenAnswer> givenAnswers;
@@ -18,5 +18,10 @@ public class Test {
 		test.setTestUser(client);
 		test.setQuestions(Question.getQuestions());
 		return test;
+	}
+	public void printTestInfo(){
+		System.out.println("Test id: " + id);
+		System.out.println("Test user: " + testUser);
+		System.out.println("score: " + score);
 	}
 }
