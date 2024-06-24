@@ -120,9 +120,18 @@ public class TestController {
 		Question questionFromTest = test.getQuestions().get(currentQuestion);
 		question.setText(questionFromTest.getQuestion());
 		questionNumber.setText("Question " + (currentQuestion + 1));
-		byte[] imageBytes = Base64.getDecoder().decode(questionFromTest.getEncodedFile());
-		Image image = new Image(new ByteArrayInputStream(imageBytes));
-		photo.setImage(image);
+		if (questionFromTest.getEncodedFile() == null) {
+			photo.setImage(null);
+			photo.setFitWidth(0);
+			photo.setFitHeight(0);
+		} else {
+			byte[] imageBytes = Base64.getDecoder().decode(questionFromTest.getEncodedFile());
+			Image image = new Image(new ByteArrayInputStream(imageBytes));
+			photo.setImage(image);
+			photo.setFitWidth(200);
+			photo.setFitHeight(200);
+			photo.setImage(image);
+		}
 		answerList.setItems(createObservableList(questionFromTest.getAnswers()));
 	}
 

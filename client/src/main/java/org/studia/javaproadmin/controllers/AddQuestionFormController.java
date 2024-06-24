@@ -109,12 +109,14 @@ public class AddQuestionFormController {
 		Question question = new Question();
 		question.setQuestion(this.question.getText());
 		byte[] file;
-		try {
-			file = Files.readAllBytes(selectedFile.toPath());
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+		if (selectedFile != null) {
+			try {
+				file = Files.readAllBytes(selectedFile.toPath());
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+			question.setEncodedFile(Base64.getEncoder().encodeToString(file));
 		}
-		question.setEncodedFile(Base64.getEncoder().encodeToString(file));
 		question.setAnswers(getAnswers());
 		question.setCorrectAnswers(getSelectedAnswers());
 		selectedAnswers.clear();
