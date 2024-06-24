@@ -100,7 +100,6 @@ public class InternetService {
 			System.out.println("Authentication is required.");
 		}
 	}
-//todo: implement the startTestRequest method to connect to api
 	public long startTestRequest(String clientAlbumNumber) throws IOException {
 		TestRequest testRequest = new TestRequest();
 		Client client = new Client();
@@ -136,10 +135,30 @@ public class InternetService {
 
 		return testID;
 	}
-//todo: implement the startTest method to connect to api
-	public Test startTest(long testID) {
+	public Test startTest(long testID) throws IOException {
 		Test test = new Test();
-		return test.createTestWithPopulatedQuestions(new Client());
+		Gson gson = new Gson();
+		URL url = new URL(apiUrl + "/startTest?id=" + testID);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		int code = conn.getResponseCode();
+		System.out.println("Response Code : " + code);
+		try(BufferedReader br = new BufferedReader(
+				new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+			StringBuilder response = new StringBuilder();
+			String responseLine = null;
+			while ((responseLine = br.readLine()) != null) {
+				response.append(responseLine.trim());
+			}
+			System.out.println("Response Body : " + response.toString());
+			test = gson.fromJson(String.valueOf(response), Test.class);
+		}
+
+		return test;
 	}
 //Todo: implement the finishTestRequest method to connect to api
 	public int finishTest(FinishedTestRequest finishedTestRequest) {

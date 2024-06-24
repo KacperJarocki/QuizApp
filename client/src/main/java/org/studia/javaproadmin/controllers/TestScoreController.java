@@ -10,6 +10,7 @@ import org.studia.javaproadmin.services.InternetService;
 public class TestScoreController {
 	MainController mainController;
 	InternetService internetService;
+	String clientAlbumNumber;
 	@FXML
 	private Label grade;
 	void setMainController(MainController mainController) {
@@ -32,9 +33,14 @@ public class TestScoreController {
 		StudentLoggedController studentLoggedController = loader.getController();
 		studentLoggedController.setMainController(mainController);
 		studentLoggedController.setInternetService(internetService);
+		studentLoggedController.setClientAlbumNumber(clientAlbumNumber);
 	}
 //todo: implement setScore method add a mark acording to test standards
 	public void setScore(int score) {
 		grade.setText("Your score is: " + score);
+	}
+
+	public void setClientAlbumNumber(String clientAlbumNumber) {
+		this.clientAlbumNumber = clientAlbumNumber;
 	}
 }

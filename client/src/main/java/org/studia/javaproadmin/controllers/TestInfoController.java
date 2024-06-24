@@ -7,12 +7,18 @@ import javafx.scene.layout.Pane;
 import org.studia.javaproadmin.entities.Test;
 import org.studia.javaproadmin.services.InternetService;
 
+import java.io.IOException;
+
 public class TestInfoController {
 	MainController mainController;
 	InternetService internetService;
 	long testID;
 	Pane pane = null;
 	FXMLLoader loader;
+	String clientAlbumNumber;
+	void setClientAlbumNumber(String clientAlbumNumber) {
+		this.clientAlbumNumber = clientAlbumNumber;
+	}
 	void setMainController(MainController mainController) {
 		this.mainController = mainController;
 	}
@@ -25,7 +31,12 @@ public class TestInfoController {
 	//TODO:implement timer
 	@FXML
 	public void startTimer(ActionEvent actionEvent) {
-		Test test = internetService.startTest(testID);
+		Test test = null;
+		try {
+			test = internetService.startTest(testID);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		for (int i = 0; i < test.getQuestions().size(); i++) {
 			test.getQuestions().get(i).printQuestionInfo();
 		}
@@ -40,6 +51,7 @@ public class TestInfoController {
 		TestController testController = loader.getController();
 		testController.setMainController(mainController);
 		testController.setInternetService(internetService);
+		testController.setClientAlbumNumber(clientAlbumNumber);
 		testController.setTest(test);
 	}
 }

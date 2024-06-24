@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
@@ -16,7 +17,9 @@ import org.studia.javaproadmin.entities.Question;
 import org.studia.javaproadmin.entities.Test;
 import org.studia.javaproadmin.services.InternetService;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class TestController {
@@ -27,6 +30,7 @@ public class TestController {
 	FinishedTestRequest finishedTestRequest = new FinishedTestRequest();
 	int currentQuestion = -1;
 	FXMLLoader loader;
+	String clientAlbumNumber;
 	@FXML
 	private ListView<String> answerList;
 	@FXML
@@ -98,15 +102,18 @@ public class TestController {
 			testScoreController.setMainController(mainController);
 			testScoreController.setInternetService(internetService);
 			testScoreController.setScore(score);
+			testScoreController.setClientAlbumNumber(clientAlbumNumber);
 			mainController.setNewPane(pane);
 
 		}else updateUI();
 	}
-///todo: implement the image decoding method
 	private void updateUI() {
 		Question questionFromTest = test.getQuestions().get(currentQuestion);
 		question.setText(questionFromTest.getQuestion());
 		questionNumber.setText("Question " + (currentQuestion + 1));
+		byte[] imageBytes = Base64.getDecoder().decode(questionFromTest.getEncodedFile());
+		Image image = new Image(new ByteArrayInputStream(imageBytes));
+		photo.setImage(image);
 		answerList.setItems(createObservableList(questionFromTest.getAnswers()));
 	}
 
@@ -129,5 +136,8 @@ public class TestController {
 			observableList.add(answer.getAnswer());
 		}
 		return observableList;
+	}
+	public void setClientAlbumNumber(String clientAlbumNumber){
+		this.clientAlbumNumber = clientAlbumNumber;
 	}
 }

@@ -42,6 +42,7 @@ public class StudentLoggedController {
 		TestInfoController testInfoController = fxmlLoader.getController();
 		testInfoController.setMainController(mainController);
 		testInfoController.setInternetService(internetService);
+		testInfoController.setClientAlbumNumber(clientAlbumNumber);
 		testInfoController.setTestID(testId);
 	}
 
