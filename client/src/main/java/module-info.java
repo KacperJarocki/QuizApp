@@ -10,7 +10,8 @@ module org.studia.javaproadmin {
 	requires jdk.compiler;
 	requires java.desktop;
 	opens org.studia.javaproadmin.entities to com.google.gson;
-
+	opens org.studia.javaproadmin.Request to com.google.gson;
+	opens org.studia.javaproadmin.response to com.google.gson;
 	opens org.studia.javaproadmin to javafx.fxml;
     exports org.studia.javaproadmin;
     exports org.studia.javaproadmin.controllers;

@@ -102,6 +102,7 @@ public class AddQuestionFormController {
 		mainController.setNewPane(pane);
 		AdminLoggedController controller = loader.getController();
 		controller.setMainController(mainController);
+		controller.setInternetService(internetService);
 	}
 	@FXML
 	public void buttonSaveQuestion(ActionEvent actionEvent) {

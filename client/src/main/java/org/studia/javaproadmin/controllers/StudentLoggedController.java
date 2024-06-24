@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.studia.javaproadmin.services.InternetService;
 
+import java.io.IOException;
+
 public class StudentLoggedController {
 	MainController mainController;
 	InternetService internetService;
@@ -24,7 +26,12 @@ public class StudentLoggedController {
 	}
 	@FXML
 	public void buttonStartTest(ActionEvent actionEvent) {
-		long testId = internetService.startTestRequest(clientAlbumNumber);
+		long testId = 0;
+		try {
+			testId = internetService.startTestRequest(clientAlbumNumber);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		fxmlLoader = new FXMLLoader(this.getClass().getResource("testInfo.fxml"));
 		try {
 			pane = fxmlLoader.load();
