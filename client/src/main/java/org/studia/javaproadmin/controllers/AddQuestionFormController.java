@@ -118,7 +118,6 @@ public class AddQuestionFormController {
 		question.setAnswers(getAnswers());
 		question.setCorrectAnswers(getSelectedAnswers());
 		selectedAnswers.clear();
-		question.printQuestionInfo();
 		try {
 			internetService.sendQuestion(question);
 		} catch (IOException e) {

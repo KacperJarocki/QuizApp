@@ -37,9 +37,6 @@ public class TestInfoController {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-		for (int i = 0; i < test.getQuestions().size(); i++) {
-			test.getQuestions().get(i).printQuestionInfo();
-		}
 		// start timer
 		loader = new FXMLLoader(this.getClass().getResource("test.fxml"));
 		try {

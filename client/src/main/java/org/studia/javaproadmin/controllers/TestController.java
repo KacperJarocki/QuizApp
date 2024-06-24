@@ -18,6 +18,7 @@ import org.studia.javaproadmin.entities.Test;
 import org.studia.javaproadmin.services.InternetService;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -90,7 +91,15 @@ public class TestController {
 			nextQuestionButton.setText("Finish");
 			updateUI();
 		} else if (currentQuestion == test.getQuestions().size()) {
-			int score = internetService.finishTest(finishedTestRequest);
+			int score = 0;
+			try {
+				finishedTestRequest.printInfo();
+				finishedTestRequest.setTestId(test.getId());
+				score = internetService.finishTest(finishedTestRequest);
+			} catch (IOException e) {
+				System.out.println("Error in finishTest");
+				throw new RuntimeException(e);
+			}
 			Pane pane = null;
 			loader = new FXMLLoader(this.getClass().getResource("testScore.fxml"));
 			try {
