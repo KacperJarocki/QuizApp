@@ -2,6 +2,7 @@ package org.studia.javaproadmin.controllers;
 
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 import org.studia.javaproadmin.services.InternetService;
@@ -14,19 +15,6 @@ public class AdminLoggedController {
 
 	void setMainController(MainController mainController) {
 		this.mainController = mainController;
-	}
-
-	public void buttonShowQuestions(ActionEvent actionEvent) {
-		fmxmlLoader = new FXMLLoader(this.getClass().getResource("showQuestionsView.fxml"));
-		pane = null;
-		try {
-			pane = fmxmlLoader.load();
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		mainController.setNewPane(pane);
-		ShowQuestionViewController showQuestionViewController = fmxmlLoader.getController();
-		showQuestionViewController.setMainController(mainController);
 	}
 
 	public void buttonAddQuestion(ActionEvent actionEvent) {
@@ -42,7 +30,7 @@ public class AdminLoggedController {
 		addQuestionFormController.setMainController(mainController);
 		addQuestionFormController.setInternetService(internetService);
 	}
-
+	@FXML
 	public void buttonShowMarks(ActionEvent actionEvent) {
 		fmxmlLoader = new FXMLLoader(this.getClass().getResource("ShowMarksView.fxml"));
 		pane = null;
@@ -74,6 +62,18 @@ public class AdminLoggedController {
 	public void setInternetService(InternetService internetService) {
 		this.internetService = internetService;
 	}
+
+	public void goBack(ActionEvent actionEvent) {
+		fmxmlLoader = new FXMLLoader(this.getClass().getResource("login.fxml"));
+		pane = null;
+		try {
+			pane = fmxmlLoader.load();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		mainController.setNewPane(pane);
+		LoginController loginController = fmxmlLoader.getController();
+		loginController.setMainController(mainController);
+	}
 	//todo: implement the method that shows the marks
-	//todo: impelement goback button
 }
