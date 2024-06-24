@@ -25,24 +25,27 @@ public class Mark {
 	}
 
 	private String hasPassed(int points) {
-		return points >= 50 ? "Passed" : "Failed";
+		return (points/20 * 100)>= 50 ? "Passed" : "Failed";
 	}
 
-	private String calculateGrade(int points) {
-		if(points >= 90) {
-			return "5";
-		} else if(points >= 80) {
-			return "4,5";
-		} else if(points >= 70) {
-			return "4";
-		} else if(points >= 60) {
-			return "3,5";
+	private String calculateGrade(int score) {
+		score = score / 20 * 100;
+		if (score >= 95) {
+			return "twoja ocena 5.0";
+		} else if (score >= 90) {
+			return "twoja ocena 4.5";
+		} else if (score >= 80) {
+			return "twoja ocena 4.0";
+		} else if (score >= 70) {
+			return "twoja ocena 3.5";
+		} else if (score >= 50) {
+			return "twoja ocena 3.0";
 		} else {
-			return "2";
+			return "twoja ocena 2.0";
 		}
 	}
 
-	public List<Mark> convertToMarks(List<Test> tests){
+	public static List<Mark> convertToMarks(List<Test> tests){
 		List<Mark> marks = new ArrayList<>();
 		for(Test test : tests) {
 			marks.add(new Mark(test.getTestUser().albumNumber,String.valueOf(test.getId()), test.getScore()));

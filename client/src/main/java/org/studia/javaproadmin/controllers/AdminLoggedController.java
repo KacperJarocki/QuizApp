@@ -39,10 +39,11 @@ public class AdminLoggedController {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		mainController.setNewPane(pane);
 		ShowMarksViewController showMarksViewController = fmxmlLoader.getController();
 		showMarksViewController.setMainController(mainController);
 		showMarksViewController.setInternetService(internetService);
+		mainController.setNewPane(pane);
+
 	}
 
 	public void buttonAddClient(ActionEvent actionEvent) {
