@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="marksTable" layoutX="21.0" layoutY="31.0" prefHeight="388.0" prefWidth="703.0">
+        <columns>
+          <TableColumn fx:id="albumNumberColumn" prefWidth="149.0" text="Numer Albumu" />
+          <TableColumn fx:id="testIdColumn" prefWidth="87.0" text="ID Testu" />
+          <TableColumn fx:id="pointsColumn" prefWidth="166.0" text="Ilość Punktów" />
+          <TableColumn fx:id="gradeColumn" prefWidth="138.0" text="Ocena" />
+          <TableColumn fx:id="passedColumn" prefWidth="162.0" text="Czy zdał" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="423.0" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="114.0" text="wstecz" />
+   </children>
+</Pane>

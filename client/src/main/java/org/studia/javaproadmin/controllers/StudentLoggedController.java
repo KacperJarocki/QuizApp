@@ -46,9 +46,23 @@ public class StudentLoggedController {
 		testInfoController.setTestID(testId);
 	}
 
-	//todo: implement the method that shows the marks
 	@FXML
 	public void buttonShowMarks(ActionEvent actionEvent) {
+		FXMLLoader loader = new FXMLLoader(this.getClass().getResource("showStudentMarksView.fxml"));
+		ShowStudentMarksViewController showStudentMarksViewController = new ShowStudentMarksViewController();
+		showStudentMarksViewController.setClientAlbumNumber(clientAlbumNumber); // set clientAlbumNumber here
+		loader.setController(showStudentMarksViewController);
+		Pane pane = null;
+		try {
+			pane = loader.load();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		showStudentMarksViewController.setMainController(mainController);
+		showStudentMarksViewController.setInternetService(internetService);
+		mainController.setNewPane(pane);
+
+		System.out.println(clientAlbumNumber);
 	}
 
 	public void goBack(ActionEvent actionEvent) {

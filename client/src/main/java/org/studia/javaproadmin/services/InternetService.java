@@ -219,4 +219,29 @@ public class InternetService {
 		}
 		return tests;
 	}
+
+	public List<Test> getUserTests(String clientNumber) throws IOException {
+		List<Test> tests = new ArrayList<>();
+		Gson gson = new Gson();
+		URL url = new URL(apiUrl + "/testsUser?albumNumber=" + clientNumber);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		int code = conn.getResponseCode();
+		System.out.println("Response Code : " + code);
+		try(BufferedReader br = new BufferedReader(
+				new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+			StringBuilder response = new StringBuilder();
+			String responseLine = null;
+			while ((responseLine = br.readLine()) != null) {
+				response.append(responseLine.trim());
+			}
+			Type listType = new TypeToken<ArrayList<Test>>(){}.getType();
+			tests = gson.fromJson(String.valueOf(response), listType);
+		}
+		return tests;
+	}
 }
