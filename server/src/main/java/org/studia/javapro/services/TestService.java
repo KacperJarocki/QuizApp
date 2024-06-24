@@ -98,5 +98,9 @@ public int calculateScore(Test test){
     }
     return score;
 }
+
+	public List<Test> getAllUserTests(String albumNumber) {
+		return testRepository.findByTestUserAlbumNumber(albumNumber).orElse(null);
+	}
 }
 

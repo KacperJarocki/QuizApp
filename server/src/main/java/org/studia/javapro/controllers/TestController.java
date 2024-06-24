@@ -48,4 +48,8 @@ public class TestController {
 		testService.updateTest(testRequest.testUser, testRequest.HowManyQuestions);
 		return ResponseEntity.ok().build();
 	}
+	@GetMapping("/testsUser")
+	public ResponseEntity getUserTests(@RequestParam String albumNumber) {
+		return ResponseEntity.ok(testService.getAllUserTests(albumNumber));
+	}
 }
