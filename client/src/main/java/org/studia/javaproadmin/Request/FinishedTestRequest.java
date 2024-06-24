@@ -10,4 +10,11 @@ import java.util.List;
 public class FinishedTestRequest {
 	long testId;
 	List<GivenAnswer> givenAnswers;
+	public void printInfo() {
+		System.out.println("Test ID: " + testId);
+		System.out.println("Given Answers: ");
+		for (GivenAnswer givenAnswer : givenAnswers) {
+			System.out.println(givenAnswer.toString());
+		}
+	}
 }

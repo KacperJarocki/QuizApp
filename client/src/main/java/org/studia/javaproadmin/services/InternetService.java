@@ -7,6 +7,7 @@ import org.studia.javaproadmin.entities.Client;
 import org.studia.javaproadmin.entities.Question;
 import org.studia.javaproadmin.entities.Roles;
 import org.studia.javaproadmin.entities.Test;
+import org.studia.javaproadmin.response.FinishedTestResponse;
 import org.studia.javaproadmin.response.testStartResponse;
 
 import java.io.BufferedReader;
@@ -50,7 +51,6 @@ public class InternetService {
 			while ((responseLine = br.readLine()) != null) {
 				response.append(responseLine.trim());
 			}
-			System.out.println("Response Body : " + response.toString());
 
 			role = gson.fromJson(response.toString(), Roles.class);
 		}
@@ -129,7 +129,6 @@ public class InternetService {
 			while ((responseLine = br.readLine()) != null) {
 				response.append(responseLine.trim());
 			}
-			System.out.println("Response Body : " + response.toString());
 			testID = gson.fromJson(String.valueOf(response), testStartResponse.class).getTestId();
 		}
 
@@ -154,14 +153,37 @@ public class InternetService {
 			while ((responseLine = br.readLine()) != null) {
 				response.append(responseLine.trim());
 			}
-			System.out.println("Response Body : " + response.toString());
 			test = gson.fromJson(String.valueOf(response), Test.class);
 		}
-
+		test.setId(testID);
 		return test;
 	}
-//Todo: implement the finishTestRequest method to connect to api
-	public int finishTest(FinishedTestRequest finishedTestRequest) {
-		return 20;
+	public int finishTest(FinishedTestRequest finishedTestRequest) throws IOException {
+		Gson gson = new Gson();
+		URL url = new URL(apiUrl + "/finishTest");
+		int score;
+		String jsonInputString = gson.toJson(finishedTestRequest);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("PUT");
+		conn.setRequestProperty("Content-Type", "application/json; utf-8");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		try(OutputStream os = conn.getOutputStream()) {
+			byte[] input = jsonInputString.getBytes("utf-8");
+			os.write(input, 0, input.length);
+		}
+		int code = conn.getResponseCode();
+		System.out.println("Response Code : " + code);
+		try(BufferedReader br = new BufferedReader(
+				new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+			StringBuilder response = new StringBuilder();
+			String responseLine = null;
+			while ((responseLine = br.readLine()) != null) {
+				response.append(responseLine.trim());
+			}
+			score = gson.fromJson(String.valueOf(response), FinishedTestResponse.class).getScore();
+		}
+		return score;
 	}
 }
