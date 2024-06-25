@@ -17,11 +17,6 @@
             <Font size="22.0" />
          </font>
       </Label>
-      <Label fx:id="date" alignment="CENTER" layoutX="555.0" layoutY="14.0" prefHeight="70.0" prefWidth="159.0" text="Data">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
       <Label alignment="TOP_LEFT" layoutX="10.0" layoutY="104.0" prefHeight="179.0" prefWidth="736.0" text="Test pisemny (Test wielokrotnego wyboru – Test na prawdę - Czas 60 minut)&#10;Zasady:&#10;-Aby uzyskać punkt wszyskite poprawne odpowiedzi powinny być zaznaczone&#10;-Po zatwierdzeniu odpowiedzi nie da się ich poprawić&#10;-Test zawiera 20 pytań &#10;-Po kliknięciu rozpocznij test, zacznie odliczać czas 60 minut">
          <cursor>
             <Cursor fx:constant="CLOSED_HAND" />
