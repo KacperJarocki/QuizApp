@@ -33,7 +33,7 @@ public class DatabaseInitializer {
 			userClient.setLastName("User");
 			userClient.setEmail("user@example.com");
 			userClient.setPassword("password"); // Consider using password encoder
-			userClient.setAlbumNumber("user");
+			userClient.setAlbumNumber("169551");
 			userClient.setRole(Roles.STUDENT);
 
 			clientService.createClient(adminClient);
